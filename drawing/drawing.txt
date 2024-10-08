@@ -650,24 +650,26 @@ end
 task.spawn(function()
 	print("[-] Injected Zenora Freemium to Roblox\nhttps://discord.gg/exploitnews")
 	local _game = game:GetService("CoreGui").Parent
-local HttpService = _game:FindService("HttpService")
+	local HttpService = _game:FindService("HttpService")
 
-local function sendRequest(options, timeout)
-	timeout = tonumber(timeout) or math.huge
-	local result, clock = nil, tick()
+	local function sendRequest(options, timeout)
+		timeout = tonumber(timeout) or math.huge
+		local result, clock = nil, tick()
 
-	HttpService:RequestInternal(options):Start(function(success, body)
-		result = body
-		result['Success'] = success
-	end)
+		HttpService:RequestInternal(options):Start(function(success, body)
+			result = body
+			result['Success'] = success
+		end)
 
-	while not result do task.wait()
-		if (tick() - clock > timeout) then
-			break
+		while not result do 
+			task.wait()
+			if (tick() - clock > timeout) then
+				break
+			end
 		end
-	end
 
-	return result
+		return result
+	end
 
 	local StarterGui = game:GetService("StarterGui")
 	local Players = game:GetService("Players")
@@ -681,6 +683,7 @@ local function sendRequest(options, timeout)
 		Duration = 5;
 	})
 end)
+
 
 
 local options = {
