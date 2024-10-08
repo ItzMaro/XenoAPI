@@ -1,1 +1,3 @@
-drawing/* text/plain
+/drawing/*.luau text
+/drawing/*.lua text
+/drawing/*.text text
