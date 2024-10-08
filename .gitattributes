@@ -1,1 +1,5 @@
-drawing/* text/plain
+/drawing/* linguist-detectable=true
+/drawing/* text
+/drawing/*.luau text
+/drawing/*.lua text
+/drawing/*.txt text
