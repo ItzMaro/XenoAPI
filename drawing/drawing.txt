@@ -648,16 +648,6 @@ function DrawingLib.createFrame()
 end
 
 task.spawn(function()
-	local StarterGui = game:GetService("StarterGui")
-	local Players = game:GetService("Players")
-	local player = Players.LocalPlayer
-	local profileImageUrl = "https://i.imgur.com/C6Zr3d6.png"
-	StarterGui:SetCore("SendNotification", {
-		Title = "Zenora Freemium",
-		Text = "Zenora Freemium Injected Successfully",
-		Icon = profileImageUrl,
-		Duration = 5
-	})
 	print("[-] Injected Zenora Freemium to Roblox\nhttps://discord.gg/exploitnews")
 	local _game = game:GetService("CoreGui").Parent
 local HttpService = _game:FindService("HttpService")
