@@ -651,8 +651,7 @@ task.spawn(function()
 	local StarterGui = game:GetService("StarterGui")
 	local Players = game:GetService("Players")
 	local player = Players.LocalPlayer
-	local profileImageUrl = "https://www.roblox.com/headshot-thumbnail/image?userId="..player.UserId.."&width=420&height=420&format=png"
-
+    local profileImageUrl = "https://www.roblox.com/headshot-thumbnail/image?username="..player.Name.."&width=420&height=420&format=png"
 	StarterGui:SetCore("SendNotification", {
 		Title = "Zenora Freemium",
 		Text = "Zenora Freemium Injected Successfully",
