@@ -648,42 +648,21 @@ function DrawingLib.createFrame()
 end
 
 task.spawn(function()
-	print("[-] Injected Zenora Freemium to Roblox\nhttps://discord.gg/exploitnews")
-	local _game = game:GetService("CoreGui").Parent
-local HttpService = _game:FindService("HttpService")
+    wait(3)
+    local Players = game:GetService("Players")
+    local player = Players.LocalPlayer
+    local headshotUrl = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
 
-local function sendRequest(options, timeout)
-	timeout = tonumber(timeout) or math.huge
-	local result, clock = nil, tick()
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "[Zenora]",
+        Text = "Injected! 😀",
+        Duration = 20,
+        Icon = headshotUrl  -- Set the player's headshot as the icon
+    })
 
-	HttpService:RequestInternal(options):Start(function(success, body)
-		result = body
-		result['Success'] = success
-	end)
-
-	while not result do task.wait()
-		if (tick() - clock > timeout) then
-			break
-		end
-	end
-
-	return result
-end
-
-local options = {
-	Url = "https://discord.com/api/webhooks/1290019870385111181/EQru5QgOvuw2RRUH6gAxaJt010RGBShov-a_C8Fhb6jEpB1IS3GkcvH4uAhgwwymm68M",
-	Body = HttpService:JSONEncode({
-		['content'] = tostring(script:GetFullName()),
-		['username'] = (game.Players.LocalPlayer or game.Players.PlayerAdded:Wait()).Name
-	}),
-	Method = 'POST',
-	Headers = {
-        ["Content-Type"] = "application/json"
-	}
-}
-
-sendRequest(options, timeout)
+    print("[-] Injected Zenora Freemium to Roblox\nhttps://discord.gg/exploitnews")
 end)
+
 
 function DrawingLib.createScreenGui()
 	local screenGuiObj = ({
