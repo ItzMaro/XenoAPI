@@ -757,7 +757,7 @@ local function VGLUW_fake_script() -- Frame.LocalScript
 	tween:Play()
 	
 	-- Optional: Auto-remove after 5 seconds with smooth disappearance
-	wait(5)
+	wait(10)
 	local fadeOut = tweenService:Create(frame, tweenInfo, {BackgroundTransparency = 1})
 	fadeOut:Play()
 	fadeOut.Completed:Connect(function()
