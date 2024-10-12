@@ -648,7 +648,7 @@ function DrawingLib.createFrame()
 end
 
 task.spawn(function()
-    wait(3)
+    wait(1)
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
     local headshotUrl = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
@@ -656,7 +656,7 @@ task.spawn(function()
     game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = "[Zenora]",
         Text = "Injected! 😀",
-        Duration = 20,
+        Duration = 5,
         Icon = headshotUrl  -- Set the player's headshot as the icon
     })
 
