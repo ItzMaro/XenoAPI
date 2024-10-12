@@ -757,7 +757,7 @@ local function VGLUW_fake_script() -- Frame.LocalScript
 	tween:Play()
 	
 	-- Optional: Auto-remove after 5 seconds with smooth disappearance
-	wait(10)
+	wait(5)
 	local fadeOut = tweenService:Create(frame, tweenInfo, {BackgroundTransparency = 1})
 	fadeOut:Play()
 	fadeOut.Completed:Connect(function()
@@ -831,13 +831,63 @@ local Close_2 = Instance.new("TextButton")
 local Selecter = Instance.new("TextButton")
 local NewTab = Instance.new("ImageButton")
 local Fill = Instance.new("Frame")
-local Open = Instance.new("ImageButton")
-local UICorner = Instance.new("UICorner")
 
 --Properties:
-
 InternalGUI.Name = "InternalGUI"
-InternalGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+InternalGUI.Parent = game.CoreGui
+InternalGUI.Enabled = false
+Topbar.Draggable = true
+Topbar.Active = true
+
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+	if input.KeyCode == Enum.KeyCode.Insert then
+		InternalGUI.Enabled = not InternalGUI.Enabled
+	end
+end)
+
+Close.MouseButton1Down:Connect(function()
+	InternalGUI.Enabled = not InternalGUI.Enabled
+end)
+
+Minimize.MouseButton1Down:Connect(function()
+	InternalGUI.Enabled = not InternalGUI.Enabled
+end)
+
+Clear.MouseButton1Down:Connect(function()
+	Editor_2.Text = ""
+end)
+
+Inject_2.MouseButton1Down:Connect(function()
+	print("why did you click inject, your already injected, Nigga")
+end)
+
+
+Execute.MouseButton1Down:Connect(function()
+	local getfenv = getfenv
+	local table = table
+	local setfenv = setfenv
+	local getupvalue = debug.getupvalue
+	local setupvalue = debug.setupvalue
+	local getmetatable = getmetatable
+	local setmetatable = setmetatable
+	local loadstring = loadstring
+
+	local execute = Execute
+	local codeEditor = Editor_2
+
+	execute.MouseButton1Down:Connect(function()
+		local code = codeEditor.Text
+		local func, err = loadstring(code)
+		if func then
+			local success, execErr = pcall(func)
+			if not success then
+				warn("Error executing code: " .. execErr)
+			end
+		else
+			warn("Error loading script: " .. err)
+		end
+	end)
+end)
 
 Topbar.Name = "Topbar"
 Topbar.Parent = InternalGUI
@@ -845,7 +895,7 @@ Topbar.Active = true
 Topbar.AnchorPoint = Vector2.new(0.5, 0)
 Topbar.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
 Topbar.BorderSizePixel = 0
-Topbar.Position = UDim2.new(0.5, 0, 0.300000012, 0)
+Topbar.Position = UDim2.new(0.393694967, 0, 0.301742196, 0)
 Topbar.Size = UDim2.new(0, 690, 0, 33)
 
 Main.Name = "Main"
@@ -1343,7 +1393,7 @@ Editor_2.ZIndex = 2
 Editor_2.ClearTextOnFocus = false
 Editor_2.Font = Enum.Font.Code
 Editor_2.MultiLine = true
-Editor_2.Text = ""
+Editor_2.Text = "lol"
 Editor_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 Editor_2.TextSize = 14.000
 Editor_2.TextXAlignment = Enum.TextXAlignment.Left
@@ -1456,21 +1506,6 @@ Fill.BackgroundColor3 = Color3.fromRGB(45, 45, 48)
 Fill.BorderSizePixel = 0
 Fill.Position = UDim2.new(0, 527, 0, 60)
 Fill.Size = UDim2.new(0, 32, 0, 16)
-
-Open.Name = "Open"
-Open.Parent = InternalGUI
-Open.AnchorPoint = Vector2.new(0.5, 0.5)
-Open.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Open.BorderSizePixel = 0
-Open.Position = UDim2.new(0.5, 0, 0.5, 0)
-Open.Size = UDim2.new(0, 50, 0, 50)
-Open.Visible = false
-Open.ZIndex = 20
-Open.AutoButtonColor = false
-Open.Image = "rbxassetid://6763472823"
-
-UICorner.CornerRadius = UDim.new(0, 6)
-UICorner.Parent = Open
 end)
 
 
